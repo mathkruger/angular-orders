@@ -1,0 +1,7 @@
+.table th {
+    border-top: 0;
+}
+
+tr {
+    cursor: pointer !important;
+}

@@ -1,0 +1,28 @@
+<table class="table table-hover">
+  <thead>
+    <th *ngFor="let header of columns">
+      {{ header.label }}
+    </th>
+  </thead>
+
+  <tbody>
+    <ng-container *ngFor="let item of data">
+      <tr *ngIf="item[showItemField]" (click)="selectRow(item)">
+        <td *ngFor="let column of columns">
+          <ng-container *ngIf="column.type === columnTypeEnum.TEXT">
+            {{ item[column.fieldName] }}
+          </ng-container>
+  
+          <ng-container *ngIf="column.type === columnTypeEnum.DATE">
+            {{ item[column.fieldName] | date }}
+          </ng-container>
+  
+          <ng-container *ngIf="column.type === columnTypeEnum.TEMPLATE && column.template">
+            <ng-container *ngTemplateOutlet="column.template; context: {$implicit: item[column.fieldName]}">
+            </ng-container>
+          </ng-container>
+        </td>
+      </tr>
+    </ng-container>
+  </tbody>
+</table>

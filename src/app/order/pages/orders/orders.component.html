@@ -1,0 +1,13 @@
+<ng-template let-status #statusTemplate>
+  <app-status [status]="status" [colors]="statusColors"></app-status>
+</ng-template>
+
+<h1 class="mb-4">
+  Orders
+</h1>
+
+<app-order-filter [data]="orders || []" (searchResult)="orders = $event"></app-order-filter>
+
+<app-grid *ngIf="orders" [columns]="ordersColumns" [data]="orders"
+  (itemSelected)="redirectToDetails($event.orderNumber)" showItemField="show">
+</app-grid>

@@ -1,0 +1,52 @@
+<div class="card mb-2">
+  <div class="card-header" (click)="collapse.toggle()">
+    {{ item?.product?.name }}
+    <span class="right">
+      <svg *ngIf="isCollapsed" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-down"
+        width="13" height="13" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <polyline points="6 9 12 15 18 9" />
+      </svg>
+
+      <svg *ngIf="!isCollapsed" xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-up"
+        width="13" height="13" viewBox="0 0 24 24" stroke-width="1.5" stroke="#000000" fill="none"
+        stroke-linecap="round" stroke-linejoin="round">
+        <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+        <polyline points="6 15 12 9 18 15" />
+      </svg>
+    </span>
+  </div>
+  <div class="card-body" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed">
+    <p>
+      <strong>Quantity</strong>: {{ item?.quantity }}
+    </p>
+
+    <p class="d-flex align-items-center">
+      <strong>Availability</strong>:
+      <span class="d-flex align-items-center ml-1" *ngIf="item?.product?.isInStock">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-checkbox" width="16" height="16"
+          viewBox="0 0 24 24" stroke-width="1.5" stroke="#00b341" fill="none" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <polyline points="9 11 12 14 20 6" />
+          <path d="M20 12v6a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h9" />
+        </svg>
+
+        In stock
+      </span>
+
+      <span class="d-flex align-items-center ml-1" *ngIf="!item?.product?.isInStock">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-square-x" width="16" height="16"
+          viewBox="0 0 24 24" stroke-width="1.5" stroke="#ff2825" fill="none" stroke-linecap="round"
+          stroke-linejoin="round">
+          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+          <rect x="4" y="4" width="16" height="16" rx="2" />
+          <path d="M10 10l4 4m0 -4l-4 4" />
+        </svg>
+
+        Out of stock
+      </span>
+    </p>
+  </div>
+</div>
